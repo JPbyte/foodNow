@@ -25,5 +25,5 @@ public class Pedido {
     private PedidoStatus status;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
-    private List<ItemPedido> itens;   
+    private List<ItemPedido> itens;
 }
