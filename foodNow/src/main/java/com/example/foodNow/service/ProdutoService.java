@@ -18,7 +18,19 @@ public class ProdutoService {
         return produtoRepository.save(produto);
     }
 
-    public List<Produto> listarProdutos(){
+    public List<Produto> listarProdutos() {
         return produtoRepository.findAll();
+    }
+
+    public Produto atualizarProduto(Long id, Produto produto){
+        Produto produto1 = produtoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+
+        produto1.setNome(produto1.getNome());
+        produto1.setDescricao(produto1.getDescricao());
+        produto1.setDisponivel(produto1.getDisponivel());
+        produto1.setPreco(produto1.getPreco());
+
+        return produtoRepository.save(produto);
     }
 }
