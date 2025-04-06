@@ -26,10 +26,10 @@ public class ProdutoService {
         Produto produto1 = produtoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
 
-        produto1.setNome(produto1.getNome());
-        produto1.setDescricao(produto1.getDescricao());
-        produto1.setDisponivel(produto1.getDisponivel());
-        produto1.setPreco(produto1.getPreco());
+        produto1.setNome(produto.getNome());
+        produto1.setDescricao(produto.getDescricao());
+        produto1.setDisponivel(produto.getDisponivel());
+        produto1.setPreco(produto.getPreco());
 
         return produtoRepository.save(produto);
     }
