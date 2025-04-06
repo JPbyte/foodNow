@@ -38,4 +38,13 @@ public class PedidoService {
             return pedidoRepository.findAll();
         }
     }
+
+    public Pedido atualizarPedido(Long id, PedidoStatus status){
+        Pedido pedido = pedidoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
+
+        pedido.setStatus(status);
+
+        return pedidoRepository.save(pedido);
+    }
 }
