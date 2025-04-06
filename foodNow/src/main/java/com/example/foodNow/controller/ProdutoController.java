@@ -18,7 +18,7 @@ public class ProdutoController {
     private final ProdutoService produtoService;
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<Produto> criarProduto(@ResponseBody Produto produto){
+    public ResponseEntity<Produto> criarProduto(@RequestBody Produto produto){
         Produto novoProduto = produtoService.salvarProduto(produto);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(novoProduto);
@@ -29,5 +29,19 @@ public class ProdutoController {
         List<Produto> produtos = produtoService.listarProdutos();
 
         return ResponseEntity.ok(produtos);
+    }
+
+    @PutMapping("/atualizar/{id}")
+    public ResponseEntity<Produto> atualizarProduto(@PathVariable Long id, @RequestBody Produto produto){
+        Produto produtoAtualizado = produtoService.atualizarProduto(id, produto);
+
+        return ResponseEntity.ok(produtoAtualizado);
+    }
+
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<Produto> alterarStatus(@PathVariable Long id, @RequestBody Produto produto){
+        Produto produtoAlterado = produtoService.alterarDisponibilidade(id, produto.getDisponivel());
+
+        return ResponseEntity.ok(produtoAlterado);
     }
 }

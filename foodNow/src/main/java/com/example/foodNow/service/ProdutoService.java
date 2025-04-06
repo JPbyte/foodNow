@@ -31,7 +31,7 @@ public class ProdutoService {
         produto1.setDisponivel(produto.getDisponivel());
         produto1.setPreco(produto.getPreco());
 
-        return produtoRepository.save(produto);
+        return produtoRepository.save(produto1);
     }
 
     /* Mudar a disponibilidade */
