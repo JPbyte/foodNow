@@ -22,7 +22,7 @@ public class ProdutoService {
         return produtoRepository.findAll();
     }
 
-    public Produto atualizarProduto(Long id, Produto produto){
+    public Produto atualizarProduto(Long id, Produto produto) {
         Produto produto1 = produtoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
 
@@ -31,6 +31,15 @@ public class ProdutoService {
         produto1.setDisponivel(produto1.getDisponivel());
         produto1.setPreco(produto1.getPreco());
 
+        return produtoRepository.save(produto);
+    }
+
+    /* Mudar a disponibilidade */
+    public Produto alterarDisponibilidade(Long id, boolean disponivel){
+        Produto produto = produtoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+
+        produto.setDisponivel(disponivel);
         return produtoRepository.save(produto);
     }
 }
